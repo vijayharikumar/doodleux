@@ -29,9 +29,10 @@ const Hero = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-3 z-20
-                   bg-gradient-to-r from-black/70 via-black/50 to-black/70
-                   backdrop-blur-lg shadow-lg rounded-b-xl"
+             bg-gradient-to-r from-black/70 via-black/50 to-black/70
+             backdrop-blur-lg shadow-lg"
       >
+
         <motion.div whileHover={{ scale: 1.1 }}>
           <Menu
             className="w-8 h-8 cursor-pointer transition-transform duration-300"
@@ -62,7 +63,7 @@ const Hero = () => {
             initial={{ x: -300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'linear' }} 
+            transition={{ duration: 0.2, ease: 'linear' }}
             className="fixed top-0 left-0 w-64 h-full bg-gradient-to-br from-darkbg via-gray-900 to-darkbg
                        text-white z-30 shadow-2xl border-r border-gray-700"
           >

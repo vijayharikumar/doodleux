@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="bg-black text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
 
-      
+
         <div className="flex flex-col justify-between space-y-8">
 
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 text-sm font-semibold tracking-wider">
@@ -36,16 +36,16 @@ export default function Footer() {
             doodle.UX
           </div>
 
-          <div className="flex space-x-6 text-gray-400">
-            <a href="#" className="hover:text-lime-400 transition">Bē</a>
-            <a href="#" className="hover:text-lime-400 transition"><Instagram size={18} /></a>
-            <a href="#" className="hover:text-lime-400 transition"><Dribbble size={18} /></a>
-            <a href="#" className="hover:text-lime-400 transition"><Linkedin size={18} /></a>
+          <div className="flex space-x-6 cursor-pointer text-gray-400">
+            <a className="hover:text-lime-400 transition">Bē</a>
+            <a className="hover:text-lime-400 transition"><Instagram size={18} /></a>
+            <a className="hover:text-lime-400 transition"><Dribbble size={18} /></a>
+            <a className="hover:text-lime-400 transition"><Linkedin size={18} /></a>
           </div>
 
           <div className="flex flex-wrap space-x-4 text-xs text-gray-500">
-            <a  className="hover:text-lime-400 transition">Privacy Policy</a>
-            <a  className="hover:text-lime-400 transition">Terms & Conditions</a>
+            <a className="hover:text-lime-400 transition">Privacy Policy</a>
+            <a className="hover:text-lime-400 transition">Terms & Conditions</a>
           </div>
         </div>
 

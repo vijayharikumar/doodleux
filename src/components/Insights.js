@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Insights() {
@@ -207,6 +207,13 @@ export default function Insights() {
   const [selectedInsight, setSelectedInsight] = useState(null)
 
   const visibleInsights = showAll ? allInsights : allInsights.slice(0, 3)
+  
+  useEffect(() => {
+    document.body.style.overflow = selectedInsight ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedInsight]);
 
   return (
     <section id="insights" className="bg-gradient-to-b from-gray-50 to-white py-20 px-6">

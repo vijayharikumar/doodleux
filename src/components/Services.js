@@ -1,6 +1,17 @@
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Eye } from 'lucide-react'
 
 export default function Services() {
+  const [previewImage, setPreviewImage] = useState(null)
+
+  useEffect(() => {
+    document.body.style.overflow = previewImage ? 'hidden' : 'auto'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [previewImage])
+
   const services = [
     {
       title: 'UX Problem Solving',
@@ -76,12 +87,23 @@ export default function Services() {
             }}
             className="bg-white rounded-3xl shadow-md p-8 flex-shrink-0 w-80 flex flex-col items-start text-left cursor-pointer"
           >
-            <div className="bg-lime-100 rounded-2xl p-4 shadow-inner mb-6">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="h-38 w-38 object-contain"
-              />
+            <div 
+              className="relative group w-full"
+              onClick={() => setPreviewImage(service.image)}
+            >
+              <div className="bg-lime-100 rounded-2xl p-4 shadow-inner mb-6 relative">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="h-38 w-38 object-contain mx-auto"
+                />
+                {/* Eye overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="bg-black bg-opacity-30 rounded-full p-2">
+                    <Eye className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h3 className="text-xl font-semibold text-gray-800 mb-3">
@@ -93,6 +115,40 @@ export default function Services() {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Image Preview Modal */}
+      <AnimatePresence>
+        {previewImage && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-3xl w-full p-4"
+            >
+              <img
+                src={previewImage}
+                alt="Preview"
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+              <button
+                onClick={() => setPreviewImage(null)}
+                className="absolute top-2 right-2 bg-white bg-opacity-80 hover:bg-opacity-100 text-black rounded-full w-8 h-8 flex items-center justify-center text-lg"
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
