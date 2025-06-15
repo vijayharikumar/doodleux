@@ -103,7 +103,6 @@ export default function FeaturedWork() {
               />
               <div className="absolute inset-0 rounded-xl border-2 border-lime-400 opacity-20"></div>
 
-              {/* Eye icon overlay */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="bg-black bg-opacity-30 rounded-full p-2">
                   <Eye className="w-6 h-6 text-white" />
@@ -124,7 +123,6 @@ export default function FeaturedWork() {
         ))}
       </div>
 
-      {/* Image Preview Modal */}
       <AnimatePresence>
         {previewImage && (
           <motion.div

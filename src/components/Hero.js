@@ -23,7 +23,6 @@ const Hero = () => {
   return (
     <section id='home' className="bg-darkbg text-white min-h-screen flex flex-col px-6 text-center relative overflow-hidden scroll-smooth">
 
-      {/* Top Bar */}
       <motion.div
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

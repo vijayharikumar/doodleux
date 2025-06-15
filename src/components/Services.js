@@ -116,7 +116,6 @@ export default function Services() {
         ))}
       </motion.div>
 
-      {/* Image Preview Modal */}
       <AnimatePresence>
         {previewImage && (
           <motion.div
