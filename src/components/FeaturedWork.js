@@ -4,6 +4,7 @@ import { Eye } from 'lucide-react'
 
 export default function FeaturedWork() {
   const [previewImage, setPreviewImage] = useState(null)
+  const [sectionKey, setSectionKey] = useState(0)
 
   useEffect(() => {
     document.body.style.overflow = previewImage ? 'hidden' : 'auto'
@@ -11,6 +12,16 @@ export default function FeaturedWork() {
       document.body.style.overflow = 'auto'
     }
   }, [previewImage])
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#ourwork') {
+        setSectionKey(prev => prev + 1)
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   const cards = [
     {
@@ -73,11 +84,11 @@ export default function FeaturedWork() {
       <div className="flex flex-col gap-12 max-w-screen-lg mx-auto">
         {cards.map((c, i) => (
           <motion.div
-            key={i}
+            key={`${sectionKey}-${i}`}
             custom={i}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             variants={cardVariants}
             whileHover={{
               y: -10,

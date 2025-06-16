@@ -1,6 +1,21 @@
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 export default function Clients() {
+  const [sectionKey, setSectionKey] = useState(0)
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#clients') {
+        setSectionKey(prev => prev + 1)
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
   const logos = Array.from({ length: 30 }).map((_, i) => ({
     id: i,
     src: `/images/clients/c${(i % 24) + 1}.png`,
@@ -36,7 +51,7 @@ export default function Clients() {
       y: 20,
       scale: 0.8,
       transition: {
-        duration: 0.2,   
+        duration: 0.2,
         ease: 'easeInOut',
       },
     },
@@ -49,12 +64,12 @@ export default function Clients() {
       </h2>
 
       <motion.div
+        key={sectionKey}
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-10 px-6 max-w-7xl mx-auto"
         variants={containerVariants}
         initial="hidden"
-        animate="show"
-        exit="hidden"
-        viewport={{ once: true, amount: 0.3 }}
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
       >
         {logos.map((logo, i) => (
           <motion.div
