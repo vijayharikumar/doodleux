@@ -69,7 +69,7 @@ export default function Clients() {
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }} 
       >
         {logos.map((logo, i) => (
           <motion.div
